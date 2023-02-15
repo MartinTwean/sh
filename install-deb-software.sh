@@ -81,6 +81,7 @@ xrdp
 hwinfo
 hardinfo
 rdate
+btop
 )
 
 count=0
