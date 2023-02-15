@@ -50,6 +50,12 @@ function func_update () {
     sudo apt autoremove --assume-yes
     sudo apt update
     sudo apt install mono-complete -t stretch --assume-yes
+
+    # import the GPG key to verify the authenticity of the packages
+    curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY | gpg --dearmor | sudo tee /usr/share/keyrings/anydesk.gpg > /dev/null
+
+    # import the AnyDesk repository
+    echo 'deb [signed-by=/usr/share/keyrings/anydesk.gpg] http://deb.anydesk.com/ all main' | sudo tee /etc/apt/sources.list.d/anydesk.list
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -63,6 +69,17 @@ function func_settings () {
     
     # Open a firewall port 3389 for an incoming traffic:
     sudo ufw allow from any to any port 3389 proto tcp
+
+    # AnyDesk Ports
+    sudo ufw allow 80/tcp
+    sudo ufw allow 443/tcp
+    sudo ufw allow 6568/tcp
+    sudo ufw allow 50001:50003/tcp
+    sudo ufw allow 50001:50003/udp
+
+    sudo echo mustertest | anydesk --set-password
+    sudo anydesk --restart-service
+    anydesk --get-id
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -112,7 +129,9 @@ echo "*******************************************************************"
 echo " Liste of apt software "
 echo "*******************************************************************"
 
+# Funktion Update wird ausgef.
 func_update
+# ---------------------------
 
 list_apt=(
 anydesk
@@ -131,6 +150,11 @@ p7zip-full
 wget
 git
 gnupg
+dirmngr
+ca-certificates
+software-properties-common
+apt-transport-https
+curl
 axxon-one
 axxon-one-client
 )
