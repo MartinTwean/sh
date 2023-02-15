@@ -43,6 +43,20 @@ function func_update () {
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( settings )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_settings () {
+    # Enable to start after reboot and run the remote desktop sharing server xrdp:
+    sudo systemctl enable --now xrdp
+    
+    # Open a firewall port 3389 for an incoming traffic:
+    sudo ufw allow from any to any port 3389 proto tcp
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( install or not )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -114,11 +128,6 @@ done
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tput sgr0
 
-# Enable to start after reboot and run the remote desktop sharing server xrdp:
-sudo systemctl enable --now xrdp
-
-# Open a firewall port 3389 for an incoming traffic:
-sudo ufw allow from any to any port 3389 proto tcp
 
 tput sgr0
 tput setaf 1
