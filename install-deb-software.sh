@@ -26,7 +26,22 @@ function pause() {
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( upgrade )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_update () {
+    sudo apt -o Acquire::ForceIPv4=true update
+    sudo apt update && upgrade
+    sudo apt list --upgradable
+    sudo apt full-upgrade --assume-yes
+    sudo apt dist-upgrade --assume-yes
+    sudo apt-file update
+    sudo apt autoclean
+    sudo apt clean
+    sudo apt autoremove --assume-yes
+    sudo dpkg --configure -a
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( install or not )
@@ -82,6 +97,12 @@ hwinfo
 hardinfo
 rdate
 btop
+apt-file
+progress
+mc
+p7zip-full
+wget
+git
 )
 
 count=0
