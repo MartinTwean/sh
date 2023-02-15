@@ -78,6 +78,8 @@ ufw
 gufw
 gparted
 xrdp
+hwinfo
+hardinfo
 )
 
 count=0
