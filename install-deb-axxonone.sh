@@ -47,9 +47,9 @@ function func_update () {
     
     # If you use Ubuntu 20.04 or Debian 11, then install the mono-complete from the stretch repository:
     sudo apt purge "mono-*" "libmono-*"
-    sudo apt autoremove
+    sudo apt autoremove --assume-yes
     sudo apt update
-    sudo apt install mono-complete -t stretch
+    sudo apt install mono-complete -t stretch --assume-yes
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
