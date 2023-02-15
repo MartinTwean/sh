@@ -80,6 +80,7 @@ gparted
 xrdp
 hwinfo
 hardinfo
+rdate
 )
 
 count=0
