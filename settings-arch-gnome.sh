@@ -72,6 +72,41 @@ function pause() {
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Gnome-Settings )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_gnome_settings() {
+    # Sane settings for Gnome
+    gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
+    gsettings set org.gnome.desktop.interface clock-show-date true
+    gsettings set org.gnome.desktop.calendar show-weekdate true
+    gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
+    gsettings set org.gnome.desktop.interface gtk-shell  'Yaru-dark'
+    gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+    gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+    gsettings set org.gnome.desktop.interface enable-animations false
+
+    # Sane settings for screen lock (screen off: 10 minutes, screen lock: 15 minutes)
+    gsettings set org.gnome.desktop.session idle-delay 600
+    gsettings set org.gnome.desktop.screensaver idle-activation-enabled 'true'
+    gsettings set org.gnome.desktop.screensaver lock-enabled 'true'
+    gsettings set org.gnome.desktop.screensaver lock-delay 900
+
+    # Sane settings for Nautilus
+    gsettings set org.gnome.nautilus.desktop font 'Cantarell 10'
+    gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'type', 'date_modified', 'owner', 'group', 'permissions']"
+    gsettings set org.gnome.nautilus.preferences show-hidden-files true
+    gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
+
+    # Sane settings for gedit"
+    gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
+
+    # compression-level
+    dconf write /org/gnome/file-roller/general/compression-level "'maximum'"
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( install or not )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_or_not() {
@@ -156,6 +191,88 @@ echo "*******************************************************************"
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Liste of software )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_list_of_software(${los}) {
+
+tput sgr0
+echo "*******************************************************************"
+echo " Liste of" ${los} "Software"
+echo "*******************************************************************"
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Liste of pacman software
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+list_pacman=(
+wget
+git
+make
+libgtop
+networkmanager
+clutter
+papirus-icon-theme
+neofetch
+nautilus-admin-git
+gnome-tweaks
+baobab
+nano
+gparted
+)
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Liste of AUR software
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+list_aur=(
+humanity-icon-theme
+yaru-gnome-shell-theme
+yaru-gtk-theme
+)
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Liste of paru software
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+list_paru=(
+    chrome-gnome-shell
+    gnome-shell-extension-dash-to-panel
+    gnome-shell-extension-caffeine
+    gnome-shell-extension-sound-output-device-chooser
+    gnome-shell-extension-tweaks-system-menu
+    gnome-shell-extension-arch-update
+    gnome-shell-extension-battery-status
+    gnome-shell-extension-system-monitor
+    gnome-shell-extension-tray-icons-reloaded
+)
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Liste of YAY software
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+list_yay=(
+ulauncher
+gnome-terminal-transparency
+nautilus-admin-git
+nautilus-copy-path
+)
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+count=0
+for name in "${list_${los}[@]}" ; do
+    count=$[count+1]
+    func_install_or_not $name func_install_${los}
+done
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+tput sgr0
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( CleanUP )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_cleanup() {
@@ -199,141 +316,114 @@ echo "*******************************************************************"
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Liste of pacman software
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
-echo "*******************************************************************"
-echo " Liste of pacman software "
-echo "*******************************************************************"
-list_pacman=(
-wget
-git
-make
-libgtop
-networkmanager
-clutter
-papirus-icon-theme
-neofetch
-nautilus-admin-git
-gnome-tweaks
-baobab
-nano
-gparted
-
-)
-
-count=0
-
-for name in "${list_pacman[@]}" ; do
-    count=$[count+1]
-    func_install_or_not $name func_install_pacman
-done
+# tput sgr0
+# echo "*******************************************************************"
+# echo " Liste of pacman software "
+# echo "*******************************************************************"
+# list_pacman=(
+# wget
+# git
+# make
+# libgtop
+# networkmanager
+# clutter
+# papirus-icon-theme
+# neofetch
+# nautilus-admin-git
+# gnome-tweaks
+# baobab
+# nano
+# gparted
+# )
+# 
+# count=0
+# 
+# for name in "${list_pacman[@]}" ; do
+#     count=$[count+1]
+#     func_install_or_not $name func_install_pacman
+# done
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
+# tput sgr0
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Liste of AUR software
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
-echo "*******************************************************************"
-echo " Liste of AUR software "
-echo "*******************************************************************"
-list_aur=(
-    humanity-icon-theme
-    yaru-gnome-shell-theme
-    yaru-gtk-theme
-)
-
-count=0
-
-for name in "${list_aur[@]}" ; do
-    count=$[count+1]
-    func_install_or_not $name func_install_aur
-done
+# tput sgr0
+# echo "*******************************************************************"
+# echo " Liste of AUR software "
+# echo "*******************************************************************"
+# list_aur=(
+#     humanity-icon-theme
+#     yaru-gnome-shell-theme
+#     yaru-gtk-theme
+# )
+# 
+# count=0
+# 
+# for name in "${list_aur[@]}" ; do
+#     count=$[count+1]
+#     func_install_or_not $name func_install_aur
+# done
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
+# tput sgr0
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Liste of paru software
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
-echo "*******************************************************************"
-echo " Liste of paru software "
-echo "*******************************************************************"
-list_paru=(
-    chrome-gnome-shell
-    gnome-shell-extension-dash-to-panel-git
-    gnome-shell-extension-caffeine-git
-    gnome-shell-extension-sound-output-device-chooser
-    gnome-shell-extension-tweaks-system-menu-git
-    gnome-shell-extension-arch-update
-    gnome-shell-extension-battery-status-git
-    gnome-shell-extension-system-monitor-git
-    gnome-shell-extension-tray-icons-reloaded-git
-)
-
-count=0
-
-for name in "${list_paru[@]}" ; do
-    count=$[count+1]
-    func_install_or_not $name func_install_paru
-done
+# tput sgr0
+# echo "*******************************************************************"
+# echo " Liste of paru software "
+# echo "*******************************************************************"
+# list_paru=(
+#     chrome-gnome-shell
+#     gnome-shell-extension-dash-to-panel
+#     gnome-shell-extension-caffeine
+#     gnome-shell-extension-sound-output-device-chooser
+#     gnome-shell-extension-tweaks-system-menu
+#     gnome-shell-extension-arch-update
+#     gnome-shell-extension-battery-status
+#     gnome-shell-extension-system-monitor
+#     gnome-shell-extension-tray-icons-reloaded
+# )
+# 
+# count=0
+# 
+# for name in "${list_paru[@]}" ; do
+#     count=$[count+1]
+#     func_install_or_not $name func_install_paru
+# done
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
+# tput sgr0
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Liste of YAY software
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
-echo "*******************************************************************"
-echo " Liste of YAY software "
-echo "*******************************************************************"
-list_yay=(
-ulauncher
-gnome-terminal-transparency
-nautilus-admin-git
-nautilus-copy-path
-)
-
-count=0
-
-for name in "${list_yay[@]}" ; do
-    count=$[count+1]
-    func_install_or_not $name func_install_yay
-done
+# tput sgr0
+# echo "*******************************************************************"
+# echo " Liste of YAY software "
+# echo "*******************************************************************"
+# list_yay=(
+# ulauncher
+# gnome-terminal-transparency
+# nautilus-admin-git
+# nautilus-copy-path
+# )
+# 
+# count=0
+# 
+# for name in "${list_yay[@]}" ; do
+#     count=$[count+1]
+#     func_install_or_not $name func_install_yay
+# done
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# tput sgr0
 
-tput sgr0
 
-# Sane settings for Gnome
-gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
-gsettings set org.gnome.desktop.interface clock-show-date true
-gsettings set org.gnome.desktop.calendar show-weekdate true
-gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
-gsettings set org.gnome.desktop.interface gtk-shell  'Yaru-dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
-gsettings set org.gnome.desktop.interface enable-animations false
 
-# Sane settings for screen lock (screen off: 10 minutes, screen lock: 15 minutes)
-gsettings set org.gnome.desktop.session idle-delay 600
-gsettings set org.gnome.desktop.screensaver idle-activation-enabled 'true'
-gsettings set org.gnome.desktop.screensaver lock-enabled 'true'
-gsettings set org.gnome.desktop.screensaver lock-delay 900
-
-# Sane settings for Nautilus
-gsettings set org.gnome.nautilus.desktop font 'Cantarell 10'
-gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'type', 'date_modified', 'owner', 'group', 'permissions']"
-gsettings set org.gnome.nautilus.preferences show-hidden-files true
-gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
-
-# Sane settings for gedit"
-gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
-
-# compression-level
-dconf write /org/gnome/file-roller/general/compression-level "'maximum'"
-
+func_gnome_settings
 func_cleanup
 
 tput sgr0
