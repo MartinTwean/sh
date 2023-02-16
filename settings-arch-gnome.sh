@@ -192,79 +192,81 @@ echo "*******************************************************************"
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( Liste of software )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-function func_list_of_software(${los}) {
+function func_list_of_software() 
+    tput sgr0
+    echo "*******************************************************************"
+    echo " Liste of" ${1} "Software"
+    echo "*******************************************************************"
 
-tput sgr0
-echo "*******************************************************************"
-echo " Liste of" ${los} "Software"
-echo "*******************************************************************"
+    listname=list_${1} 
+    funcname=func_install_${1}
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Liste of pacman software
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-list_pacman=(
-wget
-git
-make
-libgtop
-networkmanager
-clutter
-papirus-icon-theme
-neofetch
-nautilus-admin-git
-gnome-tweaks
-baobab
-nano
-gparted
-)
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # Liste of pacman software
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    list_pacman=(
+        wget
+        git
+        make
+        libgtop
+        networkmanager
+        clutter
+        papirus-icon-theme
+        neofetch
+        nautilus-admin-git
+        gnome-tweaks
+        baobab
+        nano
+        gparted
+    )
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Liste of AUR software
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-list_aur=(
-humanity-icon-theme
-yaru-gnome-shell-theme
-yaru-gtk-theme
-)
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # Liste of AUR software
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    list_aur=(
+        humanity-icon-theme
+        yaru-gnome-shell-theme
+        yaru-gtk-theme
+    )
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Liste of paru software
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-list_paru=(
-    chrome-gnome-shell
-    gnome-shell-extension-dash-to-panel
-    gnome-shell-extension-caffeine
-    gnome-shell-extension-sound-output-device-chooser
-    gnome-shell-extension-tweaks-system-menu
-    gnome-shell-extension-arch-update
-    gnome-shell-extension-battery-status
-    gnome-shell-extension-system-monitor
-    gnome-shell-extension-tray-icons-reloaded
-)
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # Liste of paru software
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    list_paru=(
+        chrome-gnome-shell
+        gnome-shell-extension-dash-to-panel
+        gnome-shell-extension-caffeine
+        gnome-shell-extension-sound-output-device-chooser
+        gnome-shell-extension-tweaks-system-menu
+        gnome-shell-extension-arch-update
+        gnome-shell-extension-battery-status
+        gnome-shell-extension-system-monitor
+        gnome-shell-extension-tray-icons-reloaded
+    )
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Liste of YAY software
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-list_yay=(
-ulauncher
-gnome-terminal-transparency
-nautilus-admin-git
-nautilus-copy-path
-)
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # Liste of YAY software
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    list_yay=(
+        ulauncher
+        gnome-terminal-transparency
+        nautilus-admin-git
+        nautilus-copy-path
+    )
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-count=0
-for name in "${list_${los}[@]}" ; do
-    count=$[count+1]
-    func_install_or_not $name func_install_${los}
-done
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-tput sgr0
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    count=0
+    for name in "${listname[@]}" ; do
+        count=$[count+1]
+        func_install_or_not $name $funcname
+    done
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    tput sgr0
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -421,7 +423,7 @@ echo "*******************************************************************"
 # tput sgr0
 
 # func_install_archlinux-keyring
-func_list_of_software("packman")
+func_list_of_software packman
 
 #func_gnome_settings
 func_cleanup
