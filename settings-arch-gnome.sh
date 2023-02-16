@@ -43,7 +43,6 @@ echo "*******************************************************************"
     sudo pacman -Sy --noconfirm --needed archlinux-keyring
     sudo pacman -Su
 }
-# func_install_archlinux-keyring
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -421,9 +420,10 @@ echo "*******************************************************************"
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # tput sgr0
 
+# func_install_archlinux-keyring
 func_list_of_software("packman")
 
-func_gnome_settings
+#func_gnome_settings
 func_cleanup
 
 tput sgr0
