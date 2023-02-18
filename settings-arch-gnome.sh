@@ -260,7 +260,7 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # eval ${func_install_or_not} "$VarName" "$VarNname" "$VarText"
     count=0
-    for paketname in "${'$1'[@]}" ; do
+    for paketname in "${($1[@])}" ; do
         count=$[count+1]
         func_install_or_not "$paketname" "$funcname"
     done
