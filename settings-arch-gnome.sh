@@ -258,9 +258,9 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # eval ${func_install_or_not} "$VarName" "$VarNname" "$VarText"
     count=0
-    for name in "${listname[@]}" ; do
+    for paketname in "${listname[@]}" ; do
         count=$[count+1]
-        eval ${func_install_or_not} "$name" "$funcname"
+        eval ${func_install_or_not} "$paketname" "$funcname"
     done
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     tput sgr0
