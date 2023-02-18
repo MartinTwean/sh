@@ -121,7 +121,7 @@ function func_install_or_not() {
      tput setaf 1
      echo "--------------------------------------------------------------"
      tput setaf 3
-     echo " Installing ""$4"" package "$3
+     echo " Installing mit ""$4"" packagename "$3
     tput sgr0
      $4 $3
  fi
@@ -135,9 +135,9 @@ function func_install_or_not() {
 function func_install_pacman() {
 tput sgr0
 echo "*******************************************************************"
-echo "Install mit pacman "${1}
+echo "Install mit pacman "${3}
 echo "*******************************************************************"
-   sudo pacman -S --noconfirm --needed $1
+   sudo pacman -S --noconfirm --needed $3
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -148,14 +148,14 @@ echo "*******************************************************************"
 function func_install_aur() {
 tput sgr0
 echo "*******************************************************************"
-echo "Install aus dem AUR "${1}
+echo "Install aus dem AUR "${3}
 echo "*******************************************************************"
   cd /tmp || exit
-  sudo rm -rf "${1}"
+  sudo rm -rf "${3}"
   # Скачивание исходников.
-  git clone https://aur.archlinux.org/"${1}".git
+  git clone https://aur.archlinux.org/"${3}".git
   # Переход в "${1}".
-  cd "${1}" || exit
+  cd "${3}" || exit
   makepkg -s --noconfirm
   sudo pacman -U --noconfirm --needed ./*.pkg.tar.*
   cd ..
@@ -169,9 +169,9 @@ echo "*******************************************************************"
 function func_install_paru() {
 tput sgr0
 echo "*******************************************************************"
-echo "Install mit paru "${1}
+echo "Install mit paru "${3}
 echo "*******************************************************************"
-   paru -S --noconfirm --needed $1
+   paru -S --noconfirm --needed $3
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -182,9 +182,9 @@ echo "*******************************************************************"
 function func_install_yay() {
 tput sgr0
 echo "*******************************************************************"
-echo "Install mit YAY "${1}
+echo "Install mit YAY "${3}
 echo "*******************************************************************"
-  yay -S --noconfirm --needed ${1}
+  yay -S --noconfirm --needed ${3}
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
