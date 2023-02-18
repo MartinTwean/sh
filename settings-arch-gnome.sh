@@ -204,13 +204,13 @@ function func_list_of_software() {
     echo " Liste of" $1 "Software"
     echo "*******************************************************************"
 
-    listname=list_$1
+    #listname=list_$1
     funcname=func_install_$1
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of pacman software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    list_pacman=(
+    pacman=(
         wget
         git
         make
@@ -229,7 +229,7 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of AUR software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    list_aur=(
+    aur=(
         humanity-icon-theme
         yaru-gnome-shell-theme
         yaru-gtk-theme
@@ -238,7 +238,7 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of paru software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    list_paru=(
+    paru=(
         chrome-gnome-shell
         gnome-shell-extension-dash-to-panel
         gnome-shell-extension-caffeine
@@ -253,20 +253,16 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of YAY software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    list_yay=(
-        ulauncher
-        gnome-terminal-transparency
-        nautilus-admin-git
-        nautilus-copy-path
+    yay=(ulauncher gnome-terminal-transparency nautilus-admin-git nautilus-copy-path
     )
 
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # eval ${func_install_or_not} "$VarName" "$VarNname" "$VarText"
     count=0
-    for paketname in "${listname[@]}" ; do
+    for paketname in "${'$1'[@]}" ; do
         count=$[count+1]
-        eval ${func_install_or_not} "$paketname" "$funcname"
+        func_install_or_not "$paketname" "$funcname"
     done
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     tput sgr0

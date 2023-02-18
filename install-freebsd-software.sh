@@ -102,7 +102,7 @@ tput sgr0
 echo "*******************************************************************"
 echo " Liste of pkg software "
 echo "*******************************************************************"
-list_apt=(
+list_pkg=(
     xorg
     xfce
     kde5
@@ -124,7 +124,7 @@ list_apt=(
 
 count=0
 
-for name in "${list_apt[@]}" ; do
+for name in "${list_pkg[@]}" ; do
     count=$[count+1]
     func_install_or_not $name func_install_pkg
 done
