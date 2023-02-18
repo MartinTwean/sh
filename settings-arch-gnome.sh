@@ -310,7 +310,7 @@ echo "*******************************************************************"
 
 
 # func_install_archlinux-keyring
-func_list_of_software packman
+func_list_of_software pacman
 
 #func_gnome_settings
 #func_cleanup
