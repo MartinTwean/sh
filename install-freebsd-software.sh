@@ -40,16 +40,7 @@ function func_set_time() {
 # Function ( upgrade )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_update () {
-    sudo apt -o Acquire::ForceIPv4=true update
-    sudo apt update && upgrade
-    sudo apt list --upgradable
-    sudo apt full-upgrade --assume-yes
-    sudo apt dist-upgrade --assume-yes
-    sudo apt-file update
-    sudo apt autoclean
-    sudo apt clean
-    sudo apt autoremove --assume-yes
-    sudo dpkg --configure -a
+    sudo pkg update
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -71,7 +62,7 @@ function func_settings () {
 # Function ( install or not )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_or_not() {
- if dpkg -s $1 2>/dev/null >/dev/null; then
+ if pkg -s $1 2>/dev/null >/dev/null; then
      tput sgr0
      tput setaf 1
      echo "--------------------------------------------------------------"
@@ -92,48 +83,44 @@ function func_install_or_not() {
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Function ( install mit apt )
+# Function ( install mit pkg )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-function func_install_apt() {
+function func_install_pkg() {
 tput sgr0
 echo "*******************************************************************"
-echo "Install mit apt "${1}
+echo "Install mit pkg "${1}
 echo "*******************************************************************"
-   sudo apt install $1 --assume-yes
+   sudo pkg install $1 --assume-yes
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Liste of apt software
+# Liste of pkg software
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tput sgr0
 echo "*******************************************************************"
-echo " Liste of apt software "
+echo " Liste of pkg software "
 echo "*******************************************************************"
 list_apt=(
-anydesk
-ufw
-gufw
-gparted
-xrdp
-hwinfo
-hardinfo
-rdate
-btop
-apt-file
-progress
-mc
-p7zip-full
-wget
-git
+    xorg
+    xfce
+    kde5
+    mate
+    openbox
+    dzen2
+    tint2
+    xbindkeys
+    xterm
+    geany
+    gnome
 )
 
 count=0
 
 for name in "${list_apt[@]}" ; do
     count=$[count+1]
-    func_install_or_not $name func_install_apt
+    func_install_or_not $name func_install_pkg
 done
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tput sgr0
