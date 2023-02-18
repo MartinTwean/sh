@@ -109,21 +109,23 @@ function func_gnome_settings() {
 # Function ( install or not )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_or_not() {
- if pacman -Qi $1 &> /dev/null; then
+    paketname=$1
+    funcname=$2
+ if pacman -Qi $paketname &> /dev/null; then
      tput sgr0
      tput setaf 1
      echo "--------------------------------------------------------------"
      tput setaf 2
-     echo " The package ""$1"" is already installed"
+     echo " The package ""$paketname"" is already installed"
    # tput sgr0
  else
      tput sgr0
      tput setaf 1
      echo "--------------------------------------------------------------"
      tput setaf 3
-     echo " Installing mit ""$2"" packagename "$1
+     echo " Installing mit ""$funcname"" packagename "$paketname
     tput sgr0
-     $2 $1
+     $funcname $paketname
  fi
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -133,11 +135,12 @@ function func_install_or_not() {
 # Function ( install mit pacman )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_pacman() {
+paketname=$1
 tput sgr0
 echo "*******************************************************************"
-echo "Install mit pacman "${2}
+echo "Install mit pacman "${paketname}
 echo "*******************************************************************"
-   sudo pacman -S --noconfirm --needed $2
+   sudo pacman -S --noconfirm --needed $paketname
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -146,16 +149,17 @@ echo "*******************************************************************"
 # Function ( install aus dem AUR )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_aur() {
+    paketname=$1
 tput sgr0
 echo "*******************************************************************"
-echo "Install aus dem AUR "${2}
+echo "Install aus dem AUR "${paketname}
 echo "*******************************************************************"
   cd /tmp || exit
-  sudo rm -rf "${2}"
+  sudo rm -rf "${paketname}"
   # Скачивание исходников.
-  git clone https://aur.archlinux.org/"${2}".git
+  git clone https://aur.archlinux.org/"${paketname}".git
   # Переход в "${1}".
-  cd "${2}" || exit
+  cd "${paketname}" || exit
   makepkg -s --noconfirm
   sudo pacman -U --noconfirm --needed ./*.pkg.tar.*
   cd ..
@@ -167,11 +171,12 @@ echo "*******************************************************************"
 # Function ( install mit paru )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_paru() {
+    paketname=$1
 tput sgr0
 echo "*******************************************************************"
-echo "Install mit paru "${3}
+echo "Install mit paru "${paketname}
 echo "*******************************************************************"
-   paru -S --noconfirm --needed $3
+   paru -S --noconfirm --needed $paketname
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -180,11 +185,12 @@ echo "*******************************************************************"
 # Function ( install mit YAY )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_yay() {
+    paketname=$1
 tput sgr0
 echo "*******************************************************************"
-echo "Install mit YAY "${3}
+echo "Install mit YAY "${paketname}
 echo "*******************************************************************"
-  yay -S --noconfirm --needed ${3}
+  yay -S --noconfirm --needed ${paketname}
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
