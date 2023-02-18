@@ -347,7 +347,6 @@ func_list_of_software pacman
 func_list_of_software paru
 func_list_of_software aur
 func_list_of_software yay
-
 func_gnome_settings
 func_cleanup
 
