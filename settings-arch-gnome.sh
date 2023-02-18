@@ -109,21 +109,21 @@ function func_gnome_settings() {
 # Function ( install or not )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_or_not() {
- if pacman -Qi $1 &> /dev/null; then
+ if pacman -Qi $3 &> /dev/null; then
      tput sgr0
      tput setaf 1
      echo "--------------------------------------------------------------"
      tput setaf 2
-     echo " The package ""$1"" is already installed"
+     echo " The package ""$3"" is already installed"
    # tput sgr0
  else
      tput sgr0
      tput setaf 1
      echo "--------------------------------------------------------------"
      tput setaf 3
-     echo " Installing ""$2"" package "$1
+     echo " Installing ""$4"" package "$3
     tput sgr0
-     $2 $1
+     $4 $3
  fi
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

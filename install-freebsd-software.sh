@@ -114,6 +114,12 @@ list_apt=(
     xterm
     geany
     gnome
+    rdate
+    ufw
+    gufw
+    nano
+    btop
+    duf
 )
 
 count=0
