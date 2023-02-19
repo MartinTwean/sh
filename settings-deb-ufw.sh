@@ -27,6 +27,19 @@ function pause() {
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Backup package_list )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_backup_package_list() {
+tput sgr0
+echo "*******************************************************************"
+echo "Backup package_list from "$HOSTNAME
+echo "*******************************************************************"
+   sudo apt list --installed | awk '{print $1}' > "$HOME/$(date +%d-%m-%Y_%H_%M_%S)-package-list.txt"
+}
+func_backup_package_list
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( install or not )
@@ -78,7 +91,6 @@ gufw
 )
 
 count=0
-
 for name in "${list_apt[@]}" ; do
     count=$[count+1]
     func_install_or_not $name func_install_apt

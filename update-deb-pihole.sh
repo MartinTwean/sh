@@ -37,6 +37,20 @@ function func_set_time() {
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Backup package_list )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_backup_package_list() {
+tput sgr0
+echo "*******************************************************************"
+echo "Backup package_list from "$HOSTNAME
+echo "*******************************************************************"
+   sudo apt list --installed | awk '{print $1}' > "$HOME/$(date +%d-%m-%Y_%H_%M_%S)-package-list.txt"
+}
+func_backup_package_list
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( upgrade )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_update () {
@@ -113,6 +127,8 @@ echo "*******************************************************************"
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+func_install_or_not rdate func_install_apt
+func_set_time
 func_update
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 
@@ -127,7 +143,6 @@ list_apt=(
     ufw
     hwinfo
     lshw
-    rdate
     btop
     apt-file
     progress

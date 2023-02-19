@@ -71,6 +71,15 @@ function pause() {
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( set Date and Time )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_set_time() {
+ rdate -ncv ptbtime1.ptb.de
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( Gnome-Settings )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_gnome_settings() {
@@ -300,8 +309,6 @@ function func_list_of_software() {
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-
-
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( CleanUP )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -342,6 +349,9 @@ echo "*******************************************************************"
 ############ +++++++ ######## ++++++++++++++ ############ +++++++ ########
 
 
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+func_install_or_not rdate func_install_apt
+func_set_time
 # func_install_archlinux-keyring
 func_list_of_software pacman
 func_list_of_software paru
@@ -349,6 +359,8 @@ func_list_of_software aur
 func_list_of_software yay
 func_gnome_settings
 func_cleanup
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+
 
 tput sgr0
 tput setaf 1

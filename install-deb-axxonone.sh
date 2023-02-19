@@ -26,6 +26,30 @@ function pause() {
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Backup package_list )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_backup_package_list() {
+tput sgr0
+echo "*******************************************************************"
+echo "Backup package_list from "$HOSTNAME
+echo "*******************************************************************"
+   sudo apt list --installed | awk '{print $1}' > "$HOME/$(date +%d-%m-%Y_%H_%M_%S)-package-list.txt"
+}
+func_backup_package_list
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( set Date and Time )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_set_time() {
+ rdate -ncv ptbtime1.ptb.de
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( upgrade )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -108,6 +132,12 @@ function func_install_or_not() {
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+func_install_or_not rdate func_install_apt
+func_set_time
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+
+
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( install mit apt )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -134,33 +164,31 @@ func_update
 # ---------------------------
 
 list_apt=(
-anydesk
-ufw
-gufw
-gparted
-xrdp
-hwinfo
-hardinfo
-rdate
-btop
-apt-file
-progress
-mc
-p7zip-full
-wget
-git
-gnupg
-dirmngr
-ca-certificates
-software-properties-common
-apt-transport-https
-curl
-axxon-one
-axxon-one-client
+    anydesk
+    ufw
+    gufw
+    gparted
+    xrdp
+    hwinfo
+    hardinfo
+    btop
+    apt-file
+    progress
+    mc
+    p7zip-full
+    wget
+    git
+    gnupg
+    dirmngr
+    ca-certificates
+    software-properties-common
+    apt-transport-https
+    curl
+    axxon-one
+    axxon-one-client
 )
 
 count=0
-
 for name in "${list_apt[@]}" ; do
     count=$[count+1]
     func_install_or_not $name func_install_apt
