@@ -136,6 +136,7 @@ list_apt=(
     wget
     git
     rpi-update
+    duf
 )
 
 count=0

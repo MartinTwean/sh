@@ -63,8 +63,41 @@ function func_settings () {
     
     # Open a firewall port 3389 for an incoming traffic:
     sudo ufw allow from any to any port 3389 proto tcp
+
+    # Sane settings for Gnome
+    gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
+    gsettings set org.gnome.desktop.interface clock-show-date true
+    gsettings set org.gnome.desktop.calendar show-weekdate true
+    gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
+    gsettings set org.gnome.desktop.interface gtk-shell  'Yaru-dark'
+    gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+    gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+    gsettings set org.gnome.desktop.interface enable-animations false
+
+    # Sane settings for screen lock (screen off: 10 minutes, screen lock: 15 minutes)
+    gsettings set org.gnome.desktop.session idle-delay 600
+    gsettings set org.gnome.desktop.screensaver idle-activation-enabled 'true'
+    gsettings set org.gnome.desktop.screensaver lock-enabled 'true'
+    gsettings set org.gnome.desktop.screensaver lock-delay 900
+
+    # Sane settings for Nautilus
+    gsettings set org.gnome.nautilus.desktop font 'Cantarell 10'
+    gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'type', 'date_modified', 'owner', 'group', 'permissions']"
+    gsettings set org.gnome.nautilus.preferences show-hidden-files true
+    gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
+
+    # Sane settings for gedit"
+    gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
+
+    # compression-level
+    dconf write /org/gnome/file-roller/general/compression-level "'maximum'"
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+func_update
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
