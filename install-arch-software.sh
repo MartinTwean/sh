@@ -283,10 +283,10 @@ function func_list_of_software() {
     # Liste of YAY software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_yay=(
-    ulauncher
-    gnome-terminal-transparency
-    nautilus-admin-git
-    nautilus-copy-path
+        ulauncher
+        gnome-terminal-transparency
+        nautilus-admin-git
+        nautilus-copy-path
     )
 
 
