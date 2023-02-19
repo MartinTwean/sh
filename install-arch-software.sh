@@ -122,6 +122,20 @@ function func_gnome_settings() {
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( install extra )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_install_extra() {
+    # install paru... 
+    mkdir $HOME/Downloads/_cloned-repos
+    cd $HOME/Downloads/_cloned-repos
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si  
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( install or not )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_or_not() {

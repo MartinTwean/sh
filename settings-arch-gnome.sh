@@ -229,9 +229,6 @@ function func_list_of_software() {
         wget
         git
         make
-        libgtop
-        networkmanager
-        clutter
         papirus-icon-theme
         neofetch
         nautilus-admin-git
