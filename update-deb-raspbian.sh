@@ -154,5 +154,6 @@ tput setaf 1
 echo "*******************************************************************"
 tput sgr0
 
-sudo -i
-reboot
+pause
+
+sudo reboot
