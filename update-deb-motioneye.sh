@@ -114,7 +114,7 @@ echo "*******************************************************************"
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 func_install_or_not rdate func_install_apt
 func_set_time
-func_update
+# func_update
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
