@@ -58,6 +58,40 @@ func_backup_package_list
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( CleanUP )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_cleanup() {
+tput sgr0
+echo "*******************************************************************"
+echo "CleanUP on " $HOSTNAME
+echo "*******************************************************************"
+    sudo apt autoclean
+    sudo apt clean
+    sudo apt autoremove --assume-yes
+    sudo dpkg --configure -a
+
+    # Flatpak unbenutzte Runtimes löschen
+    sudo flatpak uninstall --unused -y
+
+    # Removes old revisions of snaps
+    # CLOSE ALL SNAPS BEFORE RUNNING THIS
+    LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ $notes = *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done
+
+    # Starting from snap 2.34 and later, you can set the maximum number of a snap’s revisions stored by the system by setting a refresh.retain option
+    sudo snap set system refresh.retain=2
+
+    sudo du -sh /var/lib/snapd/cache/         # Get used space
+    sudo rm  --force /var/lib/snapd/cache/*   # Remove cache
+
+    sudo rm -R /home/admin/.cache/*
+    sudo rm -R /tmp/*
+    sudo du -sh ~/.cache/
+    sudo rm -rf ~/.cache/*
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( upgrade )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_update () {
@@ -67,10 +101,6 @@ function func_update () {
     sudo apt full-upgrade --assume-yes
     sudo apt dist-upgrade --assume-yes
     sudo apt-file update
-    sudo apt autoclean
-    sudo apt clean
-    sudo apt autoremove --assume-yes
-    sudo dpkg --configure -a
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -145,6 +175,12 @@ for name in "${list_apt[@]}" ; do
 done
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 tput sgr0
+
+
+# ++++++++++++++++++++++++++++ Funktionaufruf ++++++++++++++++++++++++++++
+func_update
+func_cleanup
+# ++++++++++++++++++++++++++++ Funktionaufruf ++++++++++++++++++++++++++++
 
 
 tput sgr0
