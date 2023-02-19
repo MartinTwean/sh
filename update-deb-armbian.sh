@@ -1,11 +1,11 @@
 #!/bin/bash
 #set -e
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# sudo chmod -x /home/pi/update-deb-raspbian.sh
+# sudo chmod -x /home/pi/update-deb-armbian.sh
 # sudo crontab -e
 # SHELL=/bin/bash
 # PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-# 30 2 * * 1 /usr/bin/bash /home/pi/update-deb-raspbian.sh >> /home/pi/$(date +%Y%m%d_%H%M%S).log
+# 30 2 * * 1 /usr/bin/bash /home/pi/update-deb-armbian.sh >> /home/pi/$(date +%Y%m%d_%H%M%S).log
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 clear
 tput sgr0
