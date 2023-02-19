@@ -382,3 +382,6 @@ tput sgr0
 tput setaf 1
 echo "*******************************************************************"
 tput sgr0
+
+pause
+sudo reboot
