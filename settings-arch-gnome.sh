@@ -204,13 +204,12 @@ function func_list_of_software() {
     echo " Liste of" $1 "Software"
     echo "*******************************************************************"
 
-    #listname=list_$1
-    funcname=func_install_$1
+
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of pacman software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    pacman=(
+    list_pacman=(
         wget
         git
         make
@@ -229,7 +228,7 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of AUR software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    aur=(
+    list_aur=(
         humanity-icon-theme
         yaru-gnome-shell-theme
         yaru-gtk-theme
@@ -238,7 +237,7 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of paru software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    paru=(
+    list_paru=(
         chrome-gnome-shell
         gnome-shell-extension-dash-to-panel
         gnome-shell-extension-caffeine
@@ -253,17 +252,48 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of YAY software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    yay=(ulauncher gnome-terminal-transparency nautilus-admin-git nautilus-copy-path
+    list_yay=(
+    ulauncher
+    gnome-terminal-transparency
+    nautilus-admin-git
+    nautilus-copy-path
     )
 
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # eval ${func_install_or_not} "$VarName" "$VarNname" "$VarText"
-    count=0
-    for paketname in "${($1[@])}" ; do
-        count=$[count+1]
-        func_install_or_not "$paketname" "$funcname"
-    done
+   count=0
+   listname=$1
+   funcname=func_install_$1
+   echo "Liste :$listname"
+   echo "funcname :$funcname"
+    if [ "$listname" == "pacman" ]; then
+    	for paketname in "${list_pacman[@]}"; do	
+        	count=$[count+1]
+        	func_install_or_not "$paketname" "$funcname"
+    		echo "paketname :" $paketname
+    	done
+    fi
+    if [ "$listname" == "aur" ]; then
+    	for paketname in "${list_aur[@]}"; do	
+        	count=$[count+1]
+        	func_install_or_not "$paketname" "$funcname"
+    		echo "paketname :" $paketname
+    	done
+    fi
+    if [ "$listname" == "paru" ]; then
+    	for paketname in "${list_paru[@]}"; do	
+        	count=$[count+1]
+        	func_install_or_not "$paketname" "$funcname"
+    		echo "paketname :" $paketname
+    	done
+    fi
+    if [ "$listname" == "yay" ]; then
+    	for paketname in "${list_yay[@]}"; do	
+        	count=$[count+1]
+        	func_install_or_not "$paketname" "$funcname"
+    		echo "paketname :" $paketname
+    	done
+    fi
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     tput sgr0
 }
@@ -314,9 +344,11 @@ echo "*******************************************************************"
 
 # func_install_archlinux-keyring
 func_list_of_software pacman
-
-#func_gnome_settings
-#func_cleanup
+func_list_of_software paru
+func_list_of_software aur
+func_list_of_software yay
+func_gnome_settings
+func_cleanup
 
 tput sgr0
 tput setaf 1
