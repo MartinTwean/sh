@@ -1,5 +1,12 @@
 #!/bin/bash
 #set -e
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# sudo chmod -x /home/pi/update-deb-raspbian.sh
+# sudo crontab -e
+# SHELL=/bin/bash
+# PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+# 30 2 * * 1 /usr/bin/bash /home/pi/update-deb-raspbian.sh
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 clear
 tput sgr0
 tput setaf 1
