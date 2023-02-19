@@ -112,21 +112,23 @@ echo "*******************************************************************"
 echo " Liste of apt software "
 echo "*******************************************************************"
 list_apt=(
-anydesk
-ufw
-gufw
-gparted
-xrdp
-hwinfo
-hardinfo
-rdate
-btop
-apt-file
-progress
-mc
-p7zip-full
-wget
-git
+    anydesk
+    ufw
+    gufw
+    gparted
+    xrdp
+    hwinfo
+    hardinfo
+    rdate
+    btop
+    apt-file
+    progress
+    mc
+    p7zip-full
+    wget
+    git
+    mc
+    duf
 )
 
 count=0
