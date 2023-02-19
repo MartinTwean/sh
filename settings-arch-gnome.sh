@@ -5,7 +5,7 @@
 # sudo crontab -e
 # SHELL=/bin/bash
 # PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-# 30 2 * * 1 /usr/bin/bash /home/pi/update-deb-raspbian.sh
+# 30 2 * * 1 /usr/bin/bash /home/pi/update-deb-raspbian.sh >> /home/pi/$(date +%Y%m%d_%H%M%S).log
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 clear
 tput sgr0
