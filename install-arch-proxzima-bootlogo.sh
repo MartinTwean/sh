@@ -208,7 +208,7 @@ echo "*******************************************************************"
 echo "Install Logo on " $HOSTNAME
 echo "*******************************************************************"
     # 1. Clone this repo or download the .zip:
-    rm -R $HOME/proxzima-plymouth
+    rm -Rf $HOME/proxzima-plymouth
     git clone https://github.com/PROxZIMA/proxzima-plymouth.git
     cd $HOME/proxzima-plymouth
 
