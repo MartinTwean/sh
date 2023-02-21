@@ -224,10 +224,9 @@ tput sgr0
 echo "*******************************************************************"
 echo "Install Logo on " $HOSTNAME
 echo "*******************************************************************"
-    cd $HOME
     # 1. Clone this repo or download the .zip:
     git clone https://github.com/PROxZIMA/proxzima-plymouth.git
-    cd proxzima-plymouth
+    cd $HOME/proxzima-plymouth
 
     # 2. Copy the whole proxzima directory to plymouth themes
     sudo cp -r proxzima /usr/share/plymouth/themes
@@ -244,7 +243,9 @@ echo "*******************************************************************"
 
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+func_list_of_software pacman
 func_install_logo
+func_cleanup
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 
 
