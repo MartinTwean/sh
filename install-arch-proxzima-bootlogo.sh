@@ -125,34 +125,6 @@ echo "*******************************************************************"
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Function ( install mit paru )
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-function func_install_paru() {
-    paketname=$1
-tput sgr0
-echo "*******************************************************************"
-echo "Install mit paru "${paketname}
-echo "*******************************************************************"
-   paru -S --noconfirm --needed $paketname
-}
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Function ( install mit YAY )
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-function func_install_yay() {
-    paketname=$1
-tput sgr0
-echo "*******************************************************************"
-echo "Install mit YAY "${paketname}
-echo "*******************************************************************"
-  yay -S --noconfirm --needed ${paketname}
-}
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( List of software )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_list_of_software() {
@@ -161,8 +133,6 @@ function func_list_of_software() {
     echo " Liste of" $1 "Software"
     echo "*******************************************************************"
 
-
-
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of pacman software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -170,7 +140,13 @@ function func_list_of_software() {
         git
     )
 
-    
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # Liste of AUR software
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    list_aur=(
+        plymouth
+    )
+
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    count=0
    listname=$1
@@ -179,6 +155,13 @@ function func_list_of_software() {
    echo "funcname :$funcname"
     if [ "$listname" == "pacman" ]; then
     	for paketname in "${list_pacman[@]}"; do	
+        	count=$[count+1]
+        	func_install_or_not "$paketname" "$funcname"
+    		echo "paketname :" $paketname
+    	done
+    fi
+    if [ "$listname" == "aur" ]; then
+    	for paketname in "${list_aur[@]}"; do	
         	count=$[count+1]
         	func_install_or_not "$paketname" "$funcname"
     		echo "paketname :" $paketname
@@ -225,6 +208,7 @@ echo "*******************************************************************"
 echo "Install Logo on " $HOSTNAME
 echo "*******************************************************************"
     # 1. Clone this repo or download the .zip:
+    rm -R $HOME/proxzima-plymouth
     git clone https://github.com/PROxZIMA/proxzima-plymouth.git
     cd $HOME/proxzima-plymouth
 
@@ -244,6 +228,7 @@ echo "*******************************************************************"
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 func_list_of_software pacman
+func_list_of_software aur
 func_install_logo
 func_cleanup
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
