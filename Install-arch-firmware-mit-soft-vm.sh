@@ -505,7 +505,7 @@ echo "*******************************************************************"
 
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
-func_install_or_not rdate aur
+func_install_or_not rdate func_install_aur
 func_set_time
 func_spiegelserver
 func_archlinux-keyring
