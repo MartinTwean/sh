@@ -229,8 +229,22 @@ echo "CleanUP on " $HOSTNAME
 echo "*******************************************************************"
     sudo pacman -Rns "$(pacman -Qtdq)"
 
-    sudo du -sh /var/lib/snapd/cache/         # Get used space
-    sudo rm  --force /var/lib/snapd/cache/*   # Remove cache
+    # Flatpak unbenutzte Runtimes löschen
+    sudo flatpak uninstall --unused -y
+
+    # Removes old revisions of snaps
+    # CLOSE ALL SNAPS BEFORE RUNNING THIS
+    LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ $notes = *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done
+
+    # Starting from snap 2.34 and later, you can set the maximum number of a snap’s 
+    # revisions stored by the system by setting a refresh.retain option
+    sudo snap set system refresh.retain=2
+
+    # Get used space
+    sudo du -sh /var/lib/snapd/cache/
+
+    # Remove cache
+    sudo rm  --force /var/lib/snapd/cache/*
 
     sudo rm -R /home/admin/.cache/*
     sudo rm -R /tmp/*
