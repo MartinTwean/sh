@@ -264,6 +264,7 @@ nautilus-admin-git
 nautilus-copy-path
 gnome-shell-extension-dash-to-panel
 yay
+mkinitcpio-firmware
 )
 
 count=0
