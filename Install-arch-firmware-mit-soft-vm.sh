@@ -35,7 +35,7 @@ tput sgr0
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( archlinux-keyring )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-function func_install_archlinux-keyring() {
+function func_archlinux-keyring() {
 tput sgr0
 echo "*******************************************************************"
 echo "Install archlinux-keyring on " $HOSTNAME
@@ -397,14 +397,15 @@ function func_list_of_software() {
         yaru-gnome-shell-theme
         yaru-gtk-theme
         progress
-        aic94xx-firmware
-        wd719x-firmware
         stacer
         nautilus-admin-git
         nautilus-copy-path
         gnome-shell-extension-dash-to-panel
         mkinitcpio-firmware
     )
+
+    # aic94xx-firmware
+    # wd719x-firmware
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of paru software
@@ -516,18 +517,17 @@ echo "*******************************************************************"
 
 
 
-
-
-
-
-
-
-
-
-
-
-func_clear
-
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
+func_install_or_not rdate aur
+func_set_time
+func_archlinux-keyring
+func_list_of_software pacman
+func_list_of_software paru
+func_list_of_software aur
+func_list_of_software yay
+func_settings
+func_cleanup
+# ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 
 
 tput sgr0
