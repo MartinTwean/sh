@@ -76,14 +76,13 @@ function pause() {
 # Function ( Systemctl )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function systemctl_start () {
-    paketname=$1
-    echo "------------------------------------------------------------------------"
-    echo ""
-    echo "systemctl - $paketname"
-    echo "------------------------------------------------------------------------"
-    sudo systemctl enable --now "$paketname"
-    sudo systemctl start --now "$paketname"
-    # sudo systemctl status "$paketname"
+   tput sgr0
+    echo "*******************************************************************"
+    echo "systemctl - "${paketname}
+    echo "*******************************************************************"
+    sudo systemctl enable --now ${paketname}
+    sudo systemctl start --now ${paketname}
+    # sudo systemctl status ${paketname}
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -243,11 +242,11 @@ function func_install_aur() {
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_paru() {
     paketname=$1
-tput sgr0
-echo "*******************************************************************"
-echo "Install mit paru "${paketname}
-echo "*******************************************************************"
-   paru -S --noconfirm --needed $paketname
+    tput sgr0
+    echo "*******************************************************************"
+    echo "Install mit paru "${paketname}
+    echo "*******************************************************************"
+    paru -S --noconfirm --needed $paketname
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -257,11 +256,11 @@ echo "*******************************************************************"
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_yay() {
     paketname=$1
-tput sgr0
-echo "*******************************************************************"
-echo "Install mit YAY "${paketname}
-echo "*******************************************************************"
-  yay -S --noconfirm --needed ${paketname}
+    tput sgr0
+    echo "*******************************************************************"
+    echo "Install mit YAY "${paketname}
+    echo "*******************************************************************"
+    yay -S --noconfirm --needed ${paketname}
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
