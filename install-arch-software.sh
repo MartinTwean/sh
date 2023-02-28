@@ -40,7 +40,7 @@ tput sgr0
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( archlinux-keyring )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-function func_install_archlinux-keyring() {
+function func_archlinux-keyring() {
 tput sgr0
 echo "*******************************************************************"
 echo "Install archlinux-keyring on " $HOSTNAME
@@ -89,6 +89,21 @@ func_backup_package_list
 function pause() {
  read -s -n 1 -p "Press any key to continue . . ."
  echo ""
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Systemctl )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function systemctl_start () {
+   tput sgr0
+    echo "*******************************************************************"
+    echo "systemctl - "${paketname}
+    echo "*******************************************************************"
+    sudo systemctl enable --now ${paketname}
+    sudo systemctl start --now ${paketname}
+    # sudo systemctl status ${paketname}
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
