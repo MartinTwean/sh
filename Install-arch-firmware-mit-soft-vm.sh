@@ -49,6 +49,22 @@ echo "*******************************************************************"
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( spiegelserver )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_spiegelserver() {
+tput sgr0
+echo "*******************************************************************"
+echo "Auswahl der Spiegelserver on " $HOSTNAME
+echo "*******************************************************************"
+    # Auswahl der Spiegelserver
+    pacman -Sy
+    pacman -S --noconfirm reflector
+    reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( Backup package_list )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_backup_package_list() {
@@ -491,6 +507,7 @@ echo "*******************************************************************"
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 func_install_or_not rdate aur
 func_set_time
+func_spiegelserver
 func_archlinux-keyring
 func_list_of_software pacman
 func_list_of_software paru
