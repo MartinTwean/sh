@@ -37,6 +37,37 @@ tput sgr0
 #### START ### START ######## +++FUNKTION+++ ##### START ### START #######
 ############ +++++++ ######## ++++++++++++++ ############ +++++++ ########
 
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( archlinux-keyring )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_archlinux-keyring() {
+tput sgr0
+echo "*******************************************************************"
+echo "Install archlinux-keyring on " $HOSTNAME
+echo "*******************************************************************"
+    sudo pacman-key --init
+    sudo pacman-key --populate archlinux
+    sudo pacman -Sy --noconfirm --needed archlinux-keyring
+    sudo pacman -Su
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( spiegelserver )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_spiegelserver() {
+tput sgr0
+echo "*******************************************************************"
+echo "Auswahl der Spiegelserver on " $HOSTNAME
+echo "*******************************************************************"
+    # Auswahl der Spiegelserver
+    pacman -Sy
+    pacman -S --noconfirm reflector
+    reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( Backup package_list )
@@ -58,6 +89,21 @@ func_backup_package_list
 function pause() {
  read -s -n 1 -p "Press any key to continue . . ."
  echo ""
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Systemctl )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function systemctl_start () {
+   tput sgr0
+    echo "*******************************************************************"
+    echo "systemctl - "${paketname}
+    echo "*******************************************************************"
+    sudo systemctl enable --now ${paketname}
+    sudo systemctl start --now ${paketname}
+    # sudo systemctl status ${paketname}
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
