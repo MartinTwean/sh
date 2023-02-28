@@ -73,6 +73,22 @@ function pause() {
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( Systemctl )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function systemctl_start () {
+    paketname=$1
+    echo "------------------------------------------------------------------------"
+    echo ""
+    echo "systemctl - $paketname"
+    echo "------------------------------------------------------------------------"
+    sudo systemctl enable --now "$paketname"
+    sudo systemctl start --now "$paketname"
+    # sudo systemctl status "$paketname"
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Function ( Settings )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_settings() {
@@ -155,7 +171,7 @@ function func_settings() {
 # Function ( set Date and Time )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_set_time() {
- rdate -ncv ptbtime1.ptb.de
+    rdate -ncv ptbtime1.ptb.de
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -167,20 +183,20 @@ function func_install_or_not() {
     paketname=$1
     funcname=$2
  if pacman -Qi $paketname &> /dev/null; then
-     tput sgr0
-     tput setaf 1
-     echo "--------------------------------------------------------------"
-     tput setaf 2
-     echo " The package ""$paketname"" is already installed"
+    tput sgr0
+    tput setaf 1
+    echo "--------------------------------------------------------------"
+    tput setaf 2
+    echo " The package ""$paketname"" is already installed"
    # tput sgr0
  else
-     tput sgr0
-     tput setaf 1
-     echo "--------------------------------------------------------------"
-     tput setaf 3
-     echo " Installing mit ""$funcname"" packagename "$paketname
     tput sgr0
-     $funcname $paketname
+    tput setaf 1
+    echo "--------------------------------------------------------------"
+    tput setaf 3
+    echo " Installing mit ""$funcname"" packagename "$paketname
+    tput sgr0
+    $funcname $paketname
  fi
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -190,12 +206,12 @@ function func_install_or_not() {
 # Function ( install mit pacman )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_pacman() {
-paketname=$1
-tput sgr0
-echo "*******************************************************************"
-echo "Install mit pacman "${paketname}
-echo "*******************************************************************"
-   sudo pacman -S --noconfirm --needed $paketname
+    paketname=$1
+    tput sgr0
+    echo "*******************************************************************"
+    echo "Install mit pacman "${paketname}
+    echo "*******************************************************************"
+    sudo pacman -S --noconfirm --needed $paketname
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -205,19 +221,19 @@ echo "*******************************************************************"
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_install_aur() {
     paketname=$1
-tput sgr0
-echo "*******************************************************************"
-echo "Install aus dem AUR "${paketname}
-echo "*******************************************************************"
-  cd /tmp || exit
-  sudo rm -rf "${paketname}"
-  # Скачивание исходников.
-  git clone https://aur.archlinux.org/"${paketname}".git
-  # Переход в "${1}".
-  cd "${paketname}" || exit
-  makepkg -s --noconfirm
-  sudo pacman -U --noconfirm --needed ./*.pkg.tar.*
-  cd ..
+    tput sgr0
+    echo "*******************************************************************"
+    echo "Install aus dem AUR "${paketname}
+    echo "*******************************************************************"
+    cd /tmp || exit
+    sudo rm -rf "${paketname}"
+    # Скачивание исходников.
+    git clone https://aur.archlinux.org/"${paketname}".git
+    # Переход в "${1}".
+    cd "${paketname}" || exit
+    makepkg -s --noconfirm
+    sudo pacman -U --noconfirm --needed ./*.pkg.tar.*
+    cd ..
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -247,34 +263,6 @@ echo "Install mit YAY "${paketname}
 echo "*******************************************************************"
   yay -S --noconfirm --needed ${paketname}
 }
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Function ( clear )
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-func_clear() {
-yay --noconfirm -Scc
-sudo pacman --noconfirm -Scc
-}
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-func_clear
-
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Function ( archlinux-keyring )
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-func_install_archlinux-keyring() {
-tput sgr0
-echo "*******************************************************************"
-echo "Install archlinux-keyring on " $HOSTNAME
-echo "*******************************************************************"
-    sudo pacman-key --init
-    sudo pacman-key --populate archlinux
-    sudo pacman -Sy --noconfirm --needed archlinux-keyring
-    #sudo pacman -Su
-}
-func_install_archlinux-keyring
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -335,22 +323,6 @@ echo "*******************************************************************"
 echo "Install mit YAY "${1}
 echo "*******************************************************************"
   yay -S --noconfirm --needed ${1}
-}
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Function ( Systemctl )
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-systemctl_enable ()
-{
-echo "------------------------------------------------------------------------"
-echo ""
-echo "systemctl - ${1}"
-echo "------------------------------------------------------------------------"
-  sudo systemctl enable --now "${1}"
-  sudo systemctl start --now "${1}"
-  # sudo systemctl status "${1}"
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
