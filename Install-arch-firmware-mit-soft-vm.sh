@@ -1,7 +1,6 @@
 #!/bin/bash
 # Installing VM-BackUP-soft.sh
 # nano $HOME/Downloads/VM-BackUP-soft.sh
-
 clear
 tput sgr0
 tput setaf 1
@@ -116,26 +115,25 @@ function func_settings() {
     gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
     gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
     gsettings set org.gnome.desktop.interface enable-animations false
-
+    # ---------------------------------------------------------------------------------------
     # Sane settings for screen lock (screen off: 10 minutes, screen lock: 15 minutes)
     gsettings set org.gnome.desktop.session idle-delay 600
     gsettings set org.gnome.desktop.screensaver idle-activation-enabled 'true'
     gsettings set org.gnome.desktop.screensaver lock-enabled 'true'
     gsettings set org.gnome.desktop.screensaver lock-delay 900
-
+    # ---------------------------------------------------------------------------------------
+    # Sane settings for gedit"
+    gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
+    # ---------------------------------------------------------------------------------------
+    # compression-level
+    dconf write /org/gnome/file-roller/general/compression-level "'maximum'"
+    # ---------------------------------------------------------------------------------------
     # Sane settings for Nautilus
     gsettings set org.gnome.nautilus.desktop font 'Cantarell 10'
     gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'type', 'date_modified', 'owner', 'group', 'permissions']"
     gsettings set org.gnome.nautilus.preferences show-hidden-files true
     gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
-
-    # Sane settings for gedit"
-    gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
-
-    # compression-level
-    dconf write /org/gnome/file-roller/general/compression-level "'maximum'"
-
-
+    # ---------------------------------------------------------------------------------------
     # sudo nano /etc/default/grub
     # sudo echo GRUB_GFXMODE=1440x900 >> /etc/default/grub
     cvt 1920 1080
@@ -424,39 +422,39 @@ function func_list_of_software() {
 
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-   count=0
-   listname=$1
-   funcname=func_install_$1
-   echo "Liste :$listname"
-   echo "funcname :$funcname"
-    if [ "$listname" == "pacman" ]; then
-    	for paketname in "${list_pacman[@]}"; do	
-        	count=$[count+1]
-        	func_install_or_not "$paketname" "$funcname"
-    		echo "paketname :" $paketname
-    	done
-    fi
-    if [ "$listname" == "aur" ]; then
-    	for paketname in "${list_aur[@]}"; do	
-        	count=$[count+1]
-        	func_install_or_not "$paketname" "$funcname"
-    		echo "paketname :" $paketname
-    	done
-    fi
-    if [ "$listname" == "paru" ]; then
-    	for paketname in "${list_paru[@]}"; do	
-        	count=$[count+1]
-        	func_install_or_not "$paketname" "$funcname"
-    		echo "paketname :" $paketname
-    	done
-    fi
-    if [ "$listname" == "yay" ]; then
-    	for paketname in "${list_yay[@]}"; do	
-        	count=$[count+1]
-        	func_install_or_not "$paketname" "$funcname"
-    		echo "paketname :" $paketname
-    	done
-    fi
+    count=0
+    listname=$1
+    funcname=func_install_$1
+    echo "Liste :$listname"
+    echo "funcname :$funcname"
+        if [ "$listname" == "pacman" ]; then
+        	for paketname in "${list_pacman[@]}"; do	
+            	count=$[count+1]
+            	func_install_or_not "$paketname" "$funcname"
+        		echo "paketname :" $paketname
+        	done
+        fi
+        if [ "$listname" == "aur" ]; then
+        	for paketname in "${list_aur[@]}"; do	
+            	count=$[count+1]
+            	func_install_or_not "$paketname" "$funcname"
+        		echo "paketname :" $paketname
+        	done
+        fi
+        if [ "$listname" == "paru" ]; then
+        	for paketname in "${list_paru[@]}"; do	
+            	count=$[count+1]
+            	func_install_or_not "$paketname" "$funcname"
+        		echo "paketname :" $paketname
+        	done
+        fi
+        if [ "$listname" == "yay" ]; then
+        	for paketname in "${list_yay[@]}"; do	
+            	count=$[count+1]
+            	func_install_or_not "$paketname" "$funcname"
+        		echo "paketname :" $paketname
+        	done
+        fi
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     tput sgr0
 }
@@ -480,11 +478,15 @@ echo "*******************************************************************"
     # CLOSE ALL SNAPS BEFORE RUNNING THIS
     LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ $notes = *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done
 
-    # Starting from snap 2.34 and later, you can set the maximum number of a snap’s revisions stored by the system by setting a refresh.retain option
+    # Starting from snap 2.34 and later, you can set the maximum number of a snap’s 
+    # revisions stored by the system by setting a refresh.retain option
     sudo snap set system refresh.retain=2
 
-    sudo du -sh /var/lib/snapd/cache/         # Get used space
-    sudo rm  --force /var/lib/snapd/cache/*   # Remove cache
+    # Get used space
+    sudo du -sh /var/lib/snapd/cache/
+
+    # Remove cache
+    sudo rm  --force /var/lib/snapd/cache/*
 
     sudo rm -R /home/admin/.cache/*
     sudo rm -R /tmp/*
