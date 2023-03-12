@@ -306,6 +306,8 @@ function func_list_of_software() {
         torrential
         wireshark
         rdate
+        bleachbit
+        mkvtoolnix-gui
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -389,8 +391,6 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_yay=(
         gnome-terminal-transparency
-        bleachbit
-        mkvtoolnix-gui
     )
 
 
