@@ -475,7 +475,6 @@ echo "*******************************************************************"
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 # func_install_or_not rdate func_install_pacman
-# func_set_time
 # func_install_archlinux-keyring
 func_list_of_software pacman
 func_list_of_software aur
@@ -483,6 +482,7 @@ func_list_of_software paru
 func_list_of_software yay
 func_gnome_settings
 func_cleanup
+func_set_time
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 
 
