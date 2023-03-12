@@ -500,5 +500,5 @@ tput setaf 1
 echo "*******************************************************************"
 tput sgr0
 
-pause
-sudo reboot
+# pause
+# sudo reboot
