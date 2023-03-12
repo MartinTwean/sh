@@ -336,7 +336,6 @@ function func_list_of_software() {
         simplenote-electron-bin
         remote-desktop-manager
         ventoy-bin
-        veracrypt
         viber
         vivaldi
         usbutils
@@ -382,6 +381,7 @@ function func_list_of_software() {
     # Liste of paru software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_paru=(
+        veracrypt
     )
     # chrome-gnome-shell gnome-shell-extension-dash-to-panel gnome-shell-extension-caffeine gnome-shell-extension-sound-output-device-chooser gnome-shell-extension-tweaks-system-menu gnome-shell-extension-arch-update gnome-shell-extension-battery-status gnome-shell-extension-system-monitor gnome-shell-extension-tray-icons-reloaded
 
@@ -474,7 +474,7 @@ echo "*******************************************************************"
 
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
-func_install_or_not rdate func_install_apt
+func_install_or_not rdate func_install_pacman
 func_set_time
 # func_install_archlinux-keyring
 func_list_of_software pacman
