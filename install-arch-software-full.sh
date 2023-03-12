@@ -300,13 +300,14 @@ function func_list_of_software() {
         vlc
         thunderbird
         gthumb
+        glabels
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of AUR software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_aur=(
-        glabels
+        pkgbuild
         clamav
         clamtk
         clamtk-gnome
@@ -342,7 +343,6 @@ function func_list_of_software() {
         fondo
         lsd
         maestral
-        mkvtoolnix-gui
         quickemu
         quickgui-bin
         rpi-imager
@@ -390,6 +390,7 @@ function func_list_of_software() {
     list_yay=(
         gnome-terminal-transparency
         bleachbit
+        mkvtoolnix-gui
     )
 
 
