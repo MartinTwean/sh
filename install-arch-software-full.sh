@@ -301,6 +301,9 @@ function func_list_of_software() {
         thunderbird
         gthumb
         glabels
+        humanity-icon-theme
+        yaru-gnome-shell-theme
+        yaru-gtk-theme
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -356,7 +359,7 @@ function func_list_of_software() {
         xfsprogs
         xdman
         wireshark-qt
-        torrential-git
+        torrential
         printer-support
         nfs-utils
         librewolf
@@ -364,7 +367,7 @@ function func_list_of_software() {
         jexiftoolgui
         hfsprogs
         hfsutils
-        hypnotix-git
+        hypnotix
         hardinfo
         exfatprogs
         f2fs-tools
@@ -378,9 +381,6 @@ function func_list_of_software() {
     list_paru=(
         veracrypt
         7-zip-full
-        humanity-icon-theme
-        yaru-gnome-shell-theme
-        yaru-gtk-theme
     )
     # chrome-gnome-shell gnome-shell-extension-dash-to-panel gnome-shell-extension-caffeine gnome-shell-extension-sound-output-device-chooser gnome-shell-extension-tweaks-system-menu gnome-shell-extension-arch-update gnome-shell-extension-battery-status gnome-shell-extension-system-monitor gnome-shell-extension-tray-icons-reloaded
 
