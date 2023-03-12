@@ -306,6 +306,7 @@ function func_list_of_software() {
         torrential
         bleachbit
         mkvtoolnix-gui
+        wireshark-qt
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -373,7 +374,6 @@ function func_list_of_software() {
         e2fsprogs
         dymo-cups-drivers
         rdate
-        wireshark
         gnome-terminal-transparency
     )
 
