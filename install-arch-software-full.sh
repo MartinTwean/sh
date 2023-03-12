@@ -304,8 +304,6 @@ function func_list_of_software() {
         gthumb
         glabels
         torrential
-        wireshark
-        rdate
         bleachbit
         mkvtoolnix-gui
     )
@@ -374,6 +372,9 @@ function func_list_of_software() {
         f2fs-tools
         e2fsprogs
         dymo-cups-drivers
+        rdate
+        wireshark
+        gnome-terminal-transparency
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -389,7 +390,6 @@ function func_list_of_software() {
     # Liste of YAY software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_yay=(
-        gnome-terminal-transparency
     )
 
 
@@ -475,7 +475,7 @@ echo "*******************************************************************"
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
 # func_install_or_not rdate func_install_pacman
-func_set_time
+# func_set_time
 # func_install_archlinux-keyring
 func_list_of_software pacman
 func_list_of_software aur
