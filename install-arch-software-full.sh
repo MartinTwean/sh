@@ -278,8 +278,10 @@ function func_list_of_software() {
         networkmanager
         clutter
         papirus-icon-theme
+        humanity-icon-theme
+        yaru-gnome-shell-theme
+        yaru-gtk-theme
         neofetch
-        nautilus-admin-git
         gnome-tweaks
         baobab
         nano
@@ -302,9 +304,8 @@ function func_list_of_software() {
         gthumb
         glabels
         torrential
-        humanity-icon-theme
-        yaru-gnome-shell-theme
-        yaru-gtk-theme
+        wireshark
+        rdate
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -359,7 +360,6 @@ function func_list_of_software() {
         webcatalog-bin
         xfsprogs
         xdman
-        wireshark-qt
         printer-support
         nfs-utils
         librewolf
@@ -475,7 +475,7 @@ echo "*******************************************************************"
 
 
 # ++++++++++ Funktionaufruf Systemupdate +++++++++++++++++++++++++++++++++
-func_install_or_not rdate func_install_pacman
+# func_install_or_not rdate func_install_pacman
 func_set_time
 # func_install_archlinux-keyring
 func_list_of_software pacman
