@@ -314,7 +314,6 @@ function func_list_of_software() {
     # Liste of AUR software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_aur=(
-        pkgbuild
         clamav
         clamtk
         clamtk-gnome
