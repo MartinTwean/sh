@@ -316,7 +316,6 @@ function func_list_of_software() {
         clamtk-gnome
         brscan4
         bottles
-        bleachbit
         anydesk-bin
         appimagelauncher
         kodi
@@ -370,7 +369,7 @@ function func_list_of_software() {
         hfsprogs
         hfsutils
         hypnotix-git
-        hardinfo-git
+        hardinfo
         exfatprogs
         f2fs-tools
         e2fsprogs
@@ -390,6 +389,7 @@ function func_list_of_software() {
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_yay=(
         gnome-terminal-transparency
+        bleachbit
     )
 
 
