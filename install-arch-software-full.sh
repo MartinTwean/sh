@@ -301,6 +301,7 @@ function func_list_of_software() {
         thunderbird
         gthumb
         glabels
+        torrential
         humanity-icon-theme
         yaru-gnome-shell-theme
         yaru-gtk-theme
@@ -359,7 +360,6 @@ function func_list_of_software() {
         xfsprogs
         xdman
         wireshark-qt
-        torrential
         printer-support
         nfs-utils
         librewolf
