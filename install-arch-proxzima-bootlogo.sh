@@ -270,12 +270,18 @@ echo "*******************************************************************"
     # 1. Clone this repo or download the .zip:
     rm -Rf $HOME/proxzima-plymouth
     git clone https://github.com/PROxZIMA/proxzima-plymouth.git
-    cd $HOME/proxzima-plymouth
+    cd proxzima-plymouth
 
-    # 2. Copy the whole proxzima directory to plymouth themes
+    # 2. check if theme exist in dir
+    sudo plymouth-set-default-theme -l
+
+    # 3. optionally you can test the theme by running the script given in repo (plymouth-x11 required)
+    sudo bash ./preview.sh 13
+
+    # 4. Copy the whole proxzima directory to plymouth themes
     sudo cp -r proxzima /usr/share/plymouth/themes
 
-    # now set the theme (proxzima, in this case) and rebuilt the initrd
+    # 5. now set the theme (proxzima, in this case) and rebuilt the initrd
     sudo plymouth-set-default-theme -R proxzima
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
