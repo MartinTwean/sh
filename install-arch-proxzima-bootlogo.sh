@@ -283,6 +283,18 @@ echo "*******************************************************************"
 
     # 5. now set the theme (proxzima, in this case) and rebuilt the initrd
     sudo plymouth-set-default-theme -R proxzima
+
+
+    # Configuration
+    # If you want to use the shutdown animation as boot screen then do the 
+    # following changes in the proxzima.script file.
+    
+    # sudo nano /usr/share/plymouth/themes/proxzima/proxzima.script
+    # - boot = 196;
+    # + boot = 97;
+
+    # -   flyingman_image[i] = Image("boot-" + i + ".png");
+    # +   flyingman_image[i] = Image("shut-" + i + ".png");
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
