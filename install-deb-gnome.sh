@@ -199,7 +199,7 @@ function func_install_pkgs() {
     cd /tmp || exit
    
    wget http://ftp.de.debian.org/"${paketname}".deb
-   sudo apt install /tmp/${paketname}.deb --assume-yes
+   sudo apt install /tmp/${paketname}.deb
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
