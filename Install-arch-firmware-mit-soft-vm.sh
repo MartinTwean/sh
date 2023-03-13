@@ -413,7 +413,7 @@ function func_list_of_software() {
     list_yay=(
         ulauncher
         gnome-terminal-transparency
-        nautilus-admin-git
+        nautilus-admin-gtk4
         nautilus-copy-path
         7-zip-full
         ulauncher

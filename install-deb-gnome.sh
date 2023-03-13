@@ -124,6 +124,9 @@ function func_update () {
 # Function ( settings )
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function func_settings () {
+
+    [ -d "usr/share/themes/Yaru/"]  ||  sudo mkdir $HOME/crypt
+
     # Sane settings for Gnome
     gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
     gsettings set org.gnome.desktop.interface clock-show-date true
@@ -182,6 +185,48 @@ function func_install_or_not() {
  fi
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Function ( install mit pkgs.org )
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function func_install_pkgs() {
+    paketname=$1
+    tput sgr0
+    echo "*******************************************************************"
+    echo "Install mit pkgs.org "${paketname}
+    echo "*******************************************************************"
+    cd /tmp || exit
+   
+   wget http://ftp.de.debian.org/"${paketname}".deb
+   sudo apt install ${paketname} --assume-yes
+}
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Liste of apt software
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+tput sgr0
+echo "*******************************************************************"
+echo " Liste of pkgs.org software "
+echo "*******************************************************************"
+list_pkgs=(
+   debian/pool/main/y/yaru-theme/yaru-theme-gnome-shell_22.10.3-1_all
+   debian/pool/main/y/yaru-theme/yaru-theme-gtk_22.10.3-1_all
+   debian/pool/main/y/yaru-theme/yaru-theme-icon_22.10.3-1_all
+   debian/pool/main/y/yaru-theme/yaru-theme-unity_22.10.3-1_all
+   debian/pool/main/y/yaru-theme/yaru-theme-sound_22.10.3-1_all
+)
+
+count=0
+
+for name in "${list_pkgs[@]}" ; do
+    count=$[count+1]
+    func_install_pkgs $name
+done
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+tput sgr0
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -198,7 +198,7 @@ tput sgr0
 echo "*******************************************************************"
 echo "Install mit apt "${1}
 echo "*******************************************************************"
-   sudo apt install $1 --assume-yes
+   sudo apt install --fix-missing $1 --assume-yes
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -228,6 +228,7 @@ list_apt=(
     git
     mc
     duf
+    nautilus-admin
 )
 
 count=0
