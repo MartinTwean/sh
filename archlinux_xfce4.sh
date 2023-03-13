@@ -108,3 +108,6 @@ arch-chroot /mnt pacman -S --noconfirm neofetch
 arch-chroot /mnt pacman -S --noconfirm bash-completion
 
 exit 0
+
+# pause
+# sudo reboot
