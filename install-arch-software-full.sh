@@ -374,6 +374,7 @@ function func_list_of_software() {
         dymo-cups-drivers
         rdate
         gnome-terminal-transparency
+        getpocket
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
