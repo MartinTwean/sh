@@ -24,3 +24,13 @@ tput sgr0
 # kpartx erlaubt den Schreibzugriff auf ein Image. Gnome Disks z.B. bindet IMG Dateien nur lesend ein.
 
 sudo kpartx -av {IMGDatei}
+
+# Im Terminal wird durch Angabe von -v die loop Nummer der Partitionen angezeigt, beispielsweise loop28p1. 
+# Nun kann ich das IMG mit gparted bearbeiten. 
+
+# Damit gparted die Partition bearbeiten kann, muss diese schon 
+# beim Starten von gparted mit angegeben werden. z.B. 
+
+gparted /dev/loop0
+
+# loop28 repräsentiert das IMG bzw. die Festplatte. Mit p1 wäre eine Partition innerhalb des Images gemeint.

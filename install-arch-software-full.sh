@@ -306,6 +306,7 @@ function func_list_of_software() {
         bleachbit
         mkvtoolnix-gui
         wireshark-qt
+        audacity
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
