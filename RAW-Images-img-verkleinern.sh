@@ -34,3 +34,6 @@ sudo kpartx -av {IMGDatei}
 gparted /dev/loop0
 
 # loop28 repräsentiert das IMG bzw. die Festplatte. Mit p1 wäre eine Partition innerhalb des Images gemeint.
+
+# loop mounts entfernen
+sudo kpartx -dv {IMGDatei}
