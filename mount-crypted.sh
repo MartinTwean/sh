@@ -1,5 +1,5 @@
 sudo -i
-apt install cryptsetup
+apt install cryptsetup sshfs
 
 lsblk
 
@@ -8,5 +8,5 @@ mkdir /mnt/sda1
 mount /dev/mapper/crypted_sda1 /mnt/sda1
 
 
-# mount /dev/mapper/crypted_sda1 /up2s3
+
 
