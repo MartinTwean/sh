@@ -378,6 +378,7 @@ function func_list_of_software() {
         gnome-terminal-transparency
         getpocket
         visual-studio-code-bin
+        freefilesync-bin
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
