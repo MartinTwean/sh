@@ -307,6 +307,7 @@ function func_list_of_software() {
         mkvtoolnix-gui
         wireshark-qt
         audacity
+        veracrypt
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -376,16 +377,15 @@ function func_list_of_software() {
         dymo-cups-drivers
         rdate
         gnome-terminal-transparency
-        getpocket
         visual-studio-code-bin
         freefilesync-bin
+        getpocket-desktop
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of paru software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_paru=(
-        veracrypt
         7-zip-full
     )
     # chrome-gnome-shell gnome-shell-extension-dash-to-panel gnome-shell-extension-caffeine gnome-shell-extension-sound-output-device-chooser gnome-shell-extension-tweaks-system-menu gnome-shell-extension-arch-update gnome-shell-extension-battery-status gnome-shell-extension-system-monitor gnome-shell-extension-tray-icons-reloaded
