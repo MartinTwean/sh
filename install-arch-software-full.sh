@@ -316,6 +316,7 @@ function func_list_of_software() {
         clamav
         clamtk
         clamtk-gnome
+        brother-mfc-j4410dw
         brscan4
         bottles
         anydesk-bin
@@ -376,6 +377,7 @@ function func_list_of_software() {
         rdate
         gnome-terminal-transparency
         getpocket
+        visual-studio-code-bin
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
