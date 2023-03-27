@@ -270,6 +270,8 @@ function func_list_of_software() {
     # Liste of pacman software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_pacman=(
+        base
+        base-devel
         wget
         git
         make
@@ -293,7 +295,6 @@ function func_list_of_software() {
         lutris
         ufw
         gufw
-        gparted
         sshfs
         obs-studio
         onlyoffice-bin
@@ -309,6 +310,8 @@ function func_list_of_software() {
         audacity
         veracrypt
         btop
+        dosfstools
+        mc
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -386,6 +389,7 @@ function func_list_of_software() {
         getpocket-desktop
         hardinfo-git
         dmg2img
+        soundconverter
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
