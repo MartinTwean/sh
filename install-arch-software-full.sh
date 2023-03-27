@@ -308,12 +308,15 @@ function func_list_of_software() {
         wireshark-qt
         audacity
         veracrypt
+        btop
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Liste of AUR software
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     list_aur=(
+        yay
+        paru
         clamav
         clamtk
         clamtk-gnome
@@ -367,6 +370,7 @@ function func_list_of_software() {
         librewolf
         losslesscut-bin
         jexiftoolgui
+        hfsplus
         hfsprogs
         hfsutils
         hypnotix
@@ -380,6 +384,8 @@ function func_list_of_software() {
         visual-studio-code-bin
         freefilesync-bin
         getpocket-desktop
+        hardinfo-git
+        dmg2img
     )
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

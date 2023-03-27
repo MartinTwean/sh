@@ -22,6 +22,11 @@ cryptsetup luksDump /dev/sda1
 
 sudo nano /etc/fstab
 mount /dev/mapper/secret /mnt/sda1
+
 # client
-#sudo sshfs -o allow_other,default_permissions sammy@your_other_server:~/ /mnt/droplet
+sftp://root@192.168.50.12/mnt/sda1
+sshfs root@192.168.50.12:/mnt/sda1 /mnt/remote
+
+sudo sshfs -o allow_other,default_permissions root@192.168.50.12:/mnt/sda1 /mnt/remote
+sudo sshfs -o allow_other root@192.168.50.12:/mnt/sda1 /mnt/remote
 
