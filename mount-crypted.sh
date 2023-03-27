@@ -24,9 +24,9 @@ sudo nano /etc/fstab
 mount /dev/mapper/secret /mnt/sda1
 
 # client
-sftp://root@192.168.50.12/mnt/sda1
-sshfs root@192.168.50.12:/mnt/sda1 /mnt/remote
+sftp://root@0.0.0.0/mnt/sda1
+sshfs root@0.0.0.0:/mnt/sda1 /mnt/remote
 
-sudo sshfs -o allow_other,default_permissions root@192.168.50.12:/mnt/sda1 /mnt/remote
-sudo sshfs -o allow_other root@192.168.50.12:/mnt/sda1 /mnt/remote
+sudo sshfs -o allow_other,default_permissions root@0.0.0.0:/mnt/sda1 /mnt/remote
+sudo sshfs -o allow_other root@0.0.0.0:/mnt/sda1 /mnt/remote
 
