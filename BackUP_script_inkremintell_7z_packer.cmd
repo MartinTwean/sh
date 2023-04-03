@@ -1,7 +1,9 @@
-rem Kodierung ANSI
-
-
 @echo off
+
+rem === Kodierung ==================================================================
+rem Kodierung ANSI
+rem === Kodierung ==================================================================
+
 set path0=%~d0%~P0%
 set title0=Backup
 set pause0=
